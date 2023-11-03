@@ -7,3 +7,7 @@
 - Pagenation for show product
 
 - React auto search with tooltip
+
+- Slider for webside
+
+- Image zoom with tilt
