@@ -99,3 +99,45 @@ export default ImageUplode;
 - <a onClick={() => document.getElementById('newApp').scrollIntoView({ behavior: 'smooth' })} className="inline-flex justify-center items-center space-x-2 border font-semibold rounded-lg px-7 py-3.5 leading-6 border-gray-200 bg-white text-gray-800 hover:border-gray-300 hover:text-gray-900 hover:shadow-sm focus:ring focus:ring-gray-300 focus:ring-opacity-25 active:border-gray-200 active:shadow-none dark:border-gray-700 dark:bg-transparent dark:text-gray-300 dark:hover:border-gray-600 dark:hover:text-gray-200 dark:focus:ring-gray-600 dark:focus:ring-opacity-40 dark:active:border-gray-700">
                                     <span>New Appartment</span>
                                 </a>
+
+
+
+
+
+
+
+## quantity solved
+
+     const [totalPrice, setTotalPrice] = useState(null)
+        const [quantities, setQuantities] = useState(addtocard.map(() => 1));
+      const handleCountChange = (index, amount) => {
+        const newQuantities = [...quantities];
+        newQuantities[index] += amount;
+        if (newQuantities[index] < 1) newQuantities[index] = 1; 
+        setQuantities(newQuantities);
+        getTotalProducts()
+    };
+     useEffect(() => {
+        const totalProducts = [];
+        addtocard.forEach((item, index) => {
+            if (quantities[index] > 0) {
+                totalProducts.push({
+                    ...item,
+                    quantity: quantities[index]
+                });
+            }
+        });
+        const totalPrices = totalProducts?.reduce((total, item) => total + parseFloat(item?.price * item?.quantity), 0);
+        setTotalPrice(totalPrices)
+    }, [quantities]
+    
+       <div key={item._id} className="text-center border rounded-md">
+                                                            <button
+                                                                onClick={() => handleCountChange(i, -1)}
+                                                                className="pt-0 pb-1 text-xl border-r-2 lg:px-2 md:px-2 sm:px-2">-</button>
+                                                            <span className="px-2 py-2 text-xl">{quantities[i]}</span>
+                                                            <button
+                                                                onClick={() => handleCountChange(i, 1)}
+                                                                className="pt-0 pb-1 text-xl border-l-2 lg:px-2 md:px-2 sm:px-2 ">+</button>
+                                                        </div>
+
